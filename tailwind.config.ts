@@ -1,9 +1,4 @@
 import type { Config } from "tailwindcss"
-import { Noto_Sans } from "next/font/google"
-
-const NotoSansFont = Noto_Sans({
-  weight: ["400", "500", "700"],
-}).style
 
 const config: Config = {
   content: [
