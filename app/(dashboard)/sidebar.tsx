@@ -26,8 +26,8 @@ const Sidebar = () => {
             <div key={index}>
               <div key={index} className="flex items-center">
                 <p
-                  className={`text-background opacity-60 pl-8 py-4 flex-1 cursor-pointer hover:font-medium hover:opacity-100 ${
-                    isActiveTab(tab) && "opacity-100 font-medium"
+                  className={`text-background pl-8 py-4 flex-1 cursor-pointer hover:font-medium hover:opacity-100 ${
+                    isActiveTab(tab) ? " opacity-100 font-medium" : "opacity-60"
                   }`}
                   onClick={() => {
                     handleTabClick(tab)

@@ -23,6 +23,7 @@ const UsersList = ({ users }: UsersListProps) => {
   }, [dispatchUsersList, users])
 
   const handleUserClick = (user: User) => {
+    localStorage.setItem("user", JSON.stringify(user))
     if (dispatchUser) {
       dispatchUser({ type: "SET_USER", payload: user })
     }
