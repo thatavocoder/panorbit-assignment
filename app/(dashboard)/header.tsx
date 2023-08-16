@@ -21,6 +21,9 @@ const Header = ({ usersList }: HeaderProps) => {
   const dispatchUsersList = useContext(UsersListDispatchContext)
   const router = useRouter()
 
+  // Get user from localStorage and set it to context
+  // Get usersList from props and set it to context
+  // Doing this so that the user and usersList are available even after refresh
   useEffect(() => {
     const user = localStorage.getItem("user")
     if (user && dispatchUser) {

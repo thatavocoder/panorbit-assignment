@@ -21,6 +21,7 @@ const config: Config = {
         error: "#D55050",
         success: "#1EAD62",
         chatBubble: "#F0F0F1",
+        textGrey: "#9A9B9B",
       },
       borderRadius: {
         "right-top": "0 20px 20px 0",

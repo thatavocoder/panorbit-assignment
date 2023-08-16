@@ -16,7 +16,7 @@ const ChatboxBottom: React.FC = () => {
 
   return (
     <>
-      <div className="absolute bottom-0 right-20 bg-white  border-gray-300 w-72">
+      <div className="fixed bottom-0 right-20 bg-white  border-gray-300 w-72">
         <div
           className="bg-primary text-xl text-white p-4 rounded-t-2xl w-full flex items-center justify-between"
           onClick={toggleUserList}
