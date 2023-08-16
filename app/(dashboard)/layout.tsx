@@ -12,7 +12,12 @@ interface LayoutProps {
   children: React.ReactNode
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = async ({ children }: LayoutProps) => {
+  const usersData = await fetch("https://panorbit.in/api/users.json").then(
+    (res) => res.json()
+  )
+  const usersList = usersData.users
+
   return (
     <>
       <div className="py-8 px-12 min-h-screen grid grid-cols-9 gap-12">
@@ -20,7 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
           <Sidebar />
         </div>
         <div className="col-span-7">
-          <Header />
+          <Header usersList={usersList} />
           {children}
         </div>
       </div>

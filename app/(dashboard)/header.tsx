@@ -1,20 +1,24 @@
 "use client"
 
 import { UserContext, UserDispatchContext } from "@/shared/context/userContext"
-import { UsersListContext } from "@/shared/context/usersListContext"
+import { UsersListDispatchContext } from "@/shared/context/usersListContext"
 import { User } from "@/shared/types"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import React, { useContext, useEffect, useState, useRef } from "react"
 
-const Header = () => {
+interface HeaderProps {
+  usersList: User[]
+}
+
+const Header = ({ usersList }: HeaderProps) => {
   const [showDropdown, setShowDropdown] = useState(false)
 
   const dropdownRef = useRef<HTMLDivElement | null>(null)
   const pathname = usePathname()
-  const user = useContext(UserContext)
+  const user = useContext(UserContext) as User
   const dispatchUser = useContext(UserDispatchContext)
-  const usersList = useContext(UsersListContext)
+  const dispatchUsersList = useContext(UsersListDispatchContext)
   const router = useRouter()
 
   useEffect(() => {
@@ -22,7 +26,16 @@ const Header = () => {
     if (user && dispatchUser) {
       dispatchUser({ type: "SET_USER", payload: JSON.parse(user) })
     }
+    if (usersList && dispatchUsersList) {
+      dispatchUsersList({ type: "SET_USERS_LIST", payload: usersList })
+    }
   }, [])
+
+  useEffect(() => {
+    if (!user || usersList?.length === 0) {
+      router.push("/")
+    }
+  }, [user, usersList])
 
   // Close dropdown when clicked outside
   useEffect(() => {
@@ -68,7 +81,7 @@ const Header = () => {
           className="flex items-center cursor-pointer gap-2"
         >
           <Image
-            src={user?.profilepicture as string}
+            src={user.profilepicture}
             width={30}
             height={30}
             className="rounded-full"
@@ -84,7 +97,7 @@ const Header = () => {
           <div className="p-8">
             <div className="flex flex-col items-center">
               <Image
-                src={user?.profilepicture as string}
+                src={user.profilepicture}
                 width={70}
                 height={70}
                 className="rounded-full"
@@ -102,28 +115,27 @@ const Header = () => {
               // show only 2 users
               usersList
                 ?.filter((u) => u.id !== user?.id)
-                .map((u, i) => {
-                  if (i < 2) {
+                .map((user, index) => {
+                  if (index < 2) {
                     return (
-                      <>
+                      <div key={user.id}>
                         <div
-                          key={u.id}
                           className="flex items-center justify-center gap-3 cursor-pointer py-2"
-                          onClick={() => handleUserClick(u)}
+                          onClick={() => handleUserClick(user)}
                         >
                           <Image
-                            src={u.profilepicture as string}
+                            src={user.profilepicture}
                             width={35}
                             height={35}
                             className="rounded-full"
                             alt="profile picture"
                           />
                           <p className="text-textBody tracking-wide text-sm">
-                            {u.name}
+                            {user.name}
                           </p>
                         </div>
-                        {i !== 1 && <div className="h-[1px] bg-divider" />}
-                      </>
+                        {index !== 1 && <div className="h-[1px] bg-divider" />}
+                      </div>
                     )
                   }
                 })
