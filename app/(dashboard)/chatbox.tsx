@@ -41,13 +41,13 @@ const Chatbox: React.FC<ChatboxProps> = ({
   }
 
   return (
-    <div className="w-80">
-      <div className="bg-primary text-base text-white p-4 rounded-t-2xl w-full flex items-center justify-between">
+    <div className="w-72">
+      <div className="bg-primary text-base text-white px-4 py-3 rounded-t-xl w-full flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Image
             src={selectedUserDetails?.profilepicture as string}
-            width={30}
-            height={30}
+            width={25}
+            height={25}
             className="rounded-full"
             alt="profile picture"
           />
@@ -55,22 +55,28 @@ const Chatbox: React.FC<ChatboxProps> = ({
         </div>
         <div className="flex gap-2">
           {showMessageBox ? (
-            <div className="text-2xl" onClick={() => setShowMessageBox(false)}>
+            <div
+              className="text-2xl cursor-pointer"
+              onClick={() => setShowMessageBox(false)}
+            >
               <MdKeyboardArrowDown />
             </div>
           ) : (
-            <div className="text-2xl">
+            <div className="text-2xl cursor-pointer">
               <MdKeyboardArrowUp onClick={() => setShowMessageBox(true)} />
             </div>
           )}
-          <div className="text-xl" onClick={() => setSelectedUser(null)}>
+          <div
+            className="text-xl cursor-pointer"
+            onClick={() => setSelectedUser(null)}
+          >
             <MdClose />
           </div>
         </div>
       </div>
       {showMessageBox && (
         <>
-          <div className="border border-b-0 border-primary max-h-64 h-64 overflow-y-scroll p-4 flex flex-col">
+          <div className="border border-b-0 border-primary max-h-64 h-64 overflow-y-scroll p-4 flex flex-col bg-white">
             <div className="w-52 py-2 px-4 bg-chatBubble relative rounded-2xl text-xs chatBubble-left">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi,
               ipsum.

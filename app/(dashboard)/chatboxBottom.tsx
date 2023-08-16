@@ -16,9 +16,9 @@ const ChatboxBottom: React.FC = () => {
 
   return (
     <>
-      <div className="fixed bottom-0 right-20 bg-white  border-gray-300 w-72">
+      <div className="fixed bottom-0 right-20 bg-white  border-gray-300 w-64">
         <div
-          className="bg-primary text-xl text-white p-4 rounded-t-2xl w-full flex items-center justify-between"
+          className="bg-primary text-base text-white px-4 py-3 rounded-t-xl w-full flex items-center justify-between cursor-pointer"
           onClick={toggleUserList}
         >
           <div className="flex items-center gap-2">
@@ -38,7 +38,7 @@ const ChatboxBottom: React.FC = () => {
         {showUserList && <ChatUserList setSelectedUser={setSelectedUser} />}
       </div>
       {selectedUser && (
-        <div className="flex-grow absolute top-full right-96 -translate-y-full">
+        <div className="flex-grow fixed top-full right-96 -translate-y-full">
           <Chatbox
             selectedUser={selectedUser}
             setSelectedUser={setSelectedUser}

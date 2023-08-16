@@ -75,7 +75,7 @@ const Header = ({ usersList }: HeaderProps) => {
 
   return (
     <div className="py-4 border-b flex justify-between items-center">
-      <p className="text-textTitle font-medium capitalize">
+      <p className="text-textTitle font-medium capitalize text-lg">
         {pathname.split("/")[1]}
       </p>
       <div className="relative" ref={dropdownRef}>
