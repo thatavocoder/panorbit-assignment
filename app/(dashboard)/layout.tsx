@@ -24,7 +24,7 @@ const Layout = async ({ children }: LayoutProps) => {
         <div className="col-span-2">
           <Sidebar />
         </div>
-        <div className="col-span-7">
+        <div className="col-span-7 flex flex-col">
           <Header usersList={usersList} />
           {children}
         </div>
