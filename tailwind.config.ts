@@ -18,6 +18,7 @@ const config: Config = {
         white: "#FFFFFF",
         divider: "#D4D4D5",
         grey: "#BCC4D4",
+        error: "#D55050",
       },
       borderRadius: {
         "right-top": "0 20px 20px 0",
